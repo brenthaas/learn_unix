@@ -132,10 +132,188 @@ class: middle, center
 ]
 
 .right-column[
-* disclaimer and preso mindset
-  * focused on basic UNIX, some MacOS
-  * a *ton* of info - examples of what is possible, not explainers
-    * To make you familiar with what you might see, learn more
+1. Disclaimer
+2. Life On The Command Line
+3. Working with Files
+4. Combinging Commands
+5. Environments
+6. Keep Learning!
+]
+
+---
+
+class: middle, center
+
+## ⚠️ Disclaimer! ⚠️
+
+---
+
+
+class: middle, center
+
+## Life on the Command Line
+
+---
+
+.left-column[
+## Commands
+
+- Terminoligy
+]
+
+.right-column[
+Unix commands are programs that are often invoked from within a terminal.
+]
+
+--
+
+.left-column[
+
+- It's a process
+]
+
+.right-column[
+Running a command starts a <i>process</i> on the host system
+]
+
+--
+
+.right-column[
+Any running processes can be listed, stopped, or killed (depending on permissions)
+]
+
+---
+
+.left-column[
+## Commands
+]
+
+.right-column[
+
+### Types of Commands
+]
+
+---
+
+.left-column[
+### Commands
+## Types of Commands
+]
+
+.right-column[
+Compiled programs (most built-in commands)
+]
+
+---
+
+.left-column[
+### Commands
+## Types of Commands
+]
+
+.right-column[
+Shell Scripts
+
+```bash
+#! /bin/bash
+if [ "$(uname)" == "Darwin" ]; then
+  which pinata-ssh-forward
+  if [ $? -ne 0 ]; then
+    set -e
+    echo 'Docker ssh agent forwarding is not installed'
+    echo 'Installing from https://github.com/uber-common/docker-ssh-agent-forward'
+    cd ~/workspace
+    git clone git://github.com/uber-common/docker-ssh-agent-forward
+    cd docker-ssh-agent-forward
+    make
+    make install
+  fi
+
+  set +e
+  pinata_active=`docker inspect -f '{{.State.Running}}' pinata-sshd`
+```
+]
+
+--
+
+.right-column[
+Note: bash scripts are just a series of commands and flow control
+]
+
+---
+
+.left-column[
+### Commands
+## Types of Commands
+]
+
+.right-column[
+Scripts in other Languages!
+
+```Ruby
+#!/usr/bin/env ruby
+
+commit_message = ARGV[0]
+message_type = ARGV[1]
+branch_name = %x[git rev-parse --abbrev-ref HEAD].match /.*-(?<issue_number>\d+)$/
+
+variables = {
+  'ISSUE_NUMBER' => "[##{(branch_name && branch_name[:issue_number]) || 0}]"
+}
+
+text = File.read(commit_message)
+
+case message_type
+when 'message'
+  text.prepend "#{variables['ISSUE_NUMBER']} "
+when 'template'
+  # Simply replace all the placeholders of the form "$(SOME_NAME)" with the value
+  # provided in the variables hash.
+  text.gsub!(/\$\(([^)]+)\)/) do |m|
+    name = $1
+    variables[name] if (variables.include?(name))
+  end
+end
+
+File.write(commit_message, text)
+```
+]
+
+---
+
+.left-column[
+### Commands
+## Arguments
+]
+
+.right-column[
+Just like positional arguments in code!
+
+```bash
+> echo Hello World!
+Hello World!
+```
+]
+
+--
+
+.right-column[
+Separated by spaces - use `' '` to combine
+
+```bash
+> ./show_args Hello World
+Argument 1: Hello
+Argument 2: World
+
+> ./show_args 'Hello World'
+Argument 1: Hello World
+Argument 2:
+```
+]
+
+---
+
+
 1. Command Line Life
     * command == process
     * command is like a function in code
@@ -214,7 +392,6 @@ class: middle, center
   5. Continue Learning
     * man pages are your friend
     * O'Riley books
-]
 
 
 
@@ -222,7 +399,10 @@ class: middle, center
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+        highlightLanguage: 'bash',
+        highlightLines: true
+      });
     </script>
   </body>
 </html>
