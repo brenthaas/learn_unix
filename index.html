@@ -157,62 +157,85 @@ class: middle, center
 
 .left-column[
 ## Commands
-
-- Terminoligy
+  - <u>Terminoligy</u>
 ]
 
-.right-column[
-Unix commands are programs that are often invoked from within a terminal.
-]
-
---
-
-.left-column[
-
-- It's a process
-]
-
-.right-column[
-Running a command starts a <i>process</i> on the host system
+.right-column.center[
+# Terminology
 ]
 
 --
 
 .right-column[
-Any running processes can be listed, stopped, or killed (depending on permissions)
+Unix commands are programs that are invoked from within a terminal.
+]
+
+--
+
+.right-column[
+  - starts a <b>process</b> on the host system
+]
+
+--
+
+.right-column[
+  - all processes have an identifier (<b>pid</b>)
+```
+!4441➜  ps aux | head -n3
+USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME COMMAND
+brent.haas        4447  13.6  0.5 410446720 314208   ??  S     8:59PM  11:48.93 /Users/brent.haas/Applications/iTerm.app/Contents/MacOS/iTerm2
+_windowserver      392  10.1  0.3 410408320 222064   ??  Ss    8:46PM  87:40.67 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer -daemon
+```
+]
+
+--
+
+.right-column[
+  - processes can be stopped, or killed (depending on permissions)
+```
+!4446➜  sleep 30 &
+[1] 96114                                                                                                                                                  <2.7.3> [17:42:44]
+!4447➜  ps aux | grep sleep
+brent.haas       96114   0.0  0.0 408497248   1408 s010  SN    5:42PM   0:00.00 sleep 30                                                                                                                                   <2.7.3> [17:42:49]
+!4448➜  kill -9 96114
+[1]  + 96114 killed     sleep 30
+```
 ]
 
 ---
 
 .left-column[
 ## Commands
+  - Terminology
+  - <u>Types</u>
 ]
 
-.right-column[
+.right-column.center[
+# Types of Commands
+]
 
-### Types of Commands
+--
+
+.right-column[
+- Compiled programs (most built-in commands)
 ]
 
 ---
 
 .left-column[
-### Commands
-## Types of Commands
+## Commands
+  - Terminology
+  - <u>Types</u>
+]
+
+.right-column.center[
+# Types of Commands
 ]
 
 .right-column[
-Compiled programs (most built-in commands)
-]
-
----
-
-.left-column[
-### Commands
-## Types of Commands
-]
-
-.right-column[
-Shell Scripts
+- Compiled programs (most built-in commands)
+- Shell Scripts
+  - <small><i>shell scripts are just a series of commands and flow control</i></small>
 
 ```bash
 #! /bin/bash
@@ -234,21 +257,22 @@ if [ "$(uname)" == "Darwin" ]; then
 ```
 ]
 
---
-
-.right-column[
-Note: bash scripts are just a series of commands and flow control
-]
-
 ---
 
 .left-column[
-### Commands
-## Types of Commands
+## Commands
+  - Terminology
+  - <u>Types</u>
+]
+
+.right-column.center[
+# Types of Commands
 ]
 
 .right-column[
-Scripts in other Languages!
+- Compiled programs (most built-in commands)
+- Shell Scripts
+- Scripts in other Languages!
 
 ```Ruby
 #!/usr/bin/env ruby
@@ -282,12 +306,21 @@ File.write(commit_message, text)
 ---
 
 .left-column[
-### Commands
-## Arguments
+## Commands
+  - Terminology
+  - Types
+  - <u>Arguments</u>
 ]
 
+.right-column.center[
+# Arguments
+]
+
+--
+
 .right-column[
-Just like positional arguments in code!
+- Info that a command uses to do its work
+  - Just like positional arguments in code!
 
 ```bash
 > echo Hello World!
@@ -295,10 +328,23 @@ Hello World!
 ```
 ]
 
---
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - <u>Arguments</u>
+]
+
+.right-column.center[
+# Arguments
+]
 
 .right-column[
-Separated by spaces - use `' '` to combine
+- Info that a command uses to do its work
+- Arguments are separated by spaces
+  - so use `'`s when you have spaces in an argument
 
 ```bash
 > ./show_args Hello World
@@ -313,18 +359,273 @@ Argument 2:
 
 ---
 
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - <u>Options</u>
+]
 
-1. Command Line Life
-    * command == process
-    * command is like a function in code
-      * echo
-    * arguments
-    * options
-      * - vs --
-      * -h / -? / --help ?!?
-      * man pages
-        * mention deeper view into man
-    * scripts (vs binaries)
+.right-column.center[
+# Options
+]
+
+--
+
+.right-column[
+- Modify how the command does its work
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - <u>Options</u>
+]
+
+.right-column.center[
+# Options
+]
+
+.right-column[
+- Modify how the command does its work
+- Often have both `-` and `--` options
+  - `-` for single character options
+  - `--` for human readable options
+
+```
+!4469➜  git -v
+git version 2.37.0 (Apple Git-136)
+!4470➜  git --version
+git version 2.37.0 (Apple Git-136)
+```
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - <u>Options</u>
+]
+
+.right-column.center[
+# Options
+]
+
+.right-column[
+- Modify how the command does its work
+- Often have both `-` and `--` options
+- `-` options can be combined
+```
+!4484➜  ls -alf
+total 32
+drwxr-xr-x   5 brent.haas  OMADA\Domain Users    160 Oct 21 13:59 .
+drwxr-xr-x  22 brent.haas  OMADA\Domain Users    704 Nov  9 17:19 ..
+-rw-r--r--@  1 brent.haas  OMADA\Domain Users  10915 Nov 21 19:48 index.html
+-rw-r--r--   1 brent.haas  OMADA\Domain Users    226 Sep 23 15:56 notes.md
+drwxr-xr-x  12 brent.haas  OMADA\Domain Users    384 Nov 21 19:52 .git
+```
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - <u>Options</u>
+]
+
+.right-column.center[
+# Options
+]
+
+.right-column[
+- Modify how the command does its work
+- Often have both `-` and `--` options
+- `-` options can be combined
+- Some options may be only available as `-` or `--`
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - <u>Options</u>
+]
+
+.right-column.center[
+# Options
+]
+
+.right-column[
+- Modify how the command does its work
+- Often have both `-` and `--` options
+- `-` options can be combined
+- Some options may be only available as `-` or `--`
+- Using <b><i>-h</i></b> <b><i>--help</i></b> or <b><i>-?</i></b> may give usage info
+```
+!4476➜  git -h | head -n6
+usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
+           <command> [<args>]
+```
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - <u>Man Pages</u>
+]
+
+.right-column.center[
+# Man Pages
+]
+
+--
+
+.right-column[
+- Almost every command has a man page
+  - i.e. a Man(ual)
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - <u>Man Pages</u>
+]
+
+.right-column.center[
+# Man Pages
+]
+
+.right-column[
+- Almost every command has a man page
+- RTFM using the <i><b>man</b></i> command
+
+```
+!4493➜  man ls
+LS(1)                        General Commands Manual                       LS(1)
+NAME
+     ls – list directory contents
+SYNOPSIS
+     ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,] [--color=when]
+        [-D format] [file ...]
+
+     The following options are available:
+
+     -@      Display extended attribute keys and sizes in long (-l) output.
+
+     -A      Include directory entries whose names begin with a dot (‘.’) except
+             for . and ...  Automatically set for the super-user unless -I is
+             specified.
+```
+
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - <u>Man Pages</u>
+]
+
+.right-column.center[
+# Man Pages
+]
+
+.right-column[
+- Almost every command has a man page
+- RTFM using the <i><b>man</b></i> command
+- Tells you everything you need to know
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - <u>Man Pages</u>
+]
+
+.right-column.center[
+# Man Pages
+]
+
+.right-column[
+- Almost every command has a man page
+- RTFM using the <i><b>man</b></i> command
+- Tells you everything you need to know
+- Read referenced sections
+```
+!4509➜  man grep
+...
+SEE ALSO
+     bzip2(1), compress(1), ed(1), ex(1), gzip(1), sed(1), xz(1), zgrep(1),
+     re_format(7)
+```
+```
+!4512➜  man 7 re_format
+RE_FORMAT(7)            Miscellaneous Information Manual            RE_FORMAT(7)
+NAME
+     re_format – POSIX 1003.2 regular expressions
+```
+]
+
+---
+
+class: middle, center
+
+## Pipes & Redirects
+
+---
+
+
+3. Pipes & Redirects
+    * redirects
+      * error/stdout/stdin
+      * /dev/null
+    * pipes
+    * awk
+    * pbcopy
+    * xargs (example only)
+1. Command Line Basics
+    * ps, PIDs and top
+      * kill / kill -9
+    * Navigation basics
+      * vim directions, save, quit
+      * emacs save quit
 2. Files
     * Directories
       * absolute vs relative paths
@@ -356,20 +657,6 @@ Argument 2:
       * -r
       * -i case insensitive
       * -v lines *not* matching
-3. Pipes & Redirects
-    * redirects
-      * error/stdout/stdin
-      * /dev/null
-    * pipes
-    * awk
-    * pbcopy
-    * xargs (example only)
-1. Command Line Basics
-    * ps, PIDs and top
-      * kill / kill -9
-    * Navigation basics
-      * vim directions, save, quit
-      * emacs save quit
 4. Environment
     * shells
       * bash -> zsh
