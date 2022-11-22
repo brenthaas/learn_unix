@@ -183,8 +183,8 @@ Unix commands are programs that are invoked from within a terminal.
 ```
 !4441➜  ps aux | head -n3
 USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME COMMAND
-brent.haas        4447  13.6  0.5 410446720 314208   ??  S     8:59PM  11:48.93 /Users/brent.haas/Applications/iTerm.app/Contents/MacOS/iTerm2
-_windowserver      392  10.1  0.3 410408320 222064   ??  Ss    8:46PM  87:40.67 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer -daemon
+brent.haas        4447  13.6  0.5 410446720 314208   ??  S     8:59PM  11:48.93 /Users/brent/Applications/iTerm.app/Contents/MacOS/iTerm2
+_windowserver      392  10.1  0.3 410408320 222064   ??  Ss    8:46PM  87:40.67 /System/Library/Resources/WindowServer -daemon
 ```
 ]
 
@@ -398,9 +398,9 @@ Argument 2:
   - `--` for human readable options
 
 ```
-!4469➜  git -v
+➜  git -v
 git version 2.37.0 (Apple Git-136)
-!4470➜  git --version
+➜  git --version
 git version 2.37.0 (Apple Git-136)
 ```
 ]
@@ -424,13 +424,13 @@ git version 2.37.0 (Apple Git-136)
 - Often have both `-` and `--` options
 - `-` options can be combined
 ```
-!4484➜  ls -alf
+➜  ls -alf
 total 32
-drwxr-xr-x   5 brent.haas  OMADA\Domain Users    160 Oct 21 13:59 .
-drwxr-xr-x  22 brent.haas  OMADA\Domain Users    704 Nov  9 17:19 ..
--rw-r--r--@  1 brent.haas  OMADA\Domain Users  10915 Nov 21 19:48 index.html
--rw-r--r--   1 brent.haas  OMADA\Domain Users    226 Sep 23 15:56 notes.md
-drwxr-xr-x  12 brent.haas  OMADA\Domain Users    384 Nov 21 19:52 .git
+drwxr-xr-x   5 brent  Users    160 Oct 21 13:59 .
+drwxr-xr-x  22 brent  Users    704 Nov  9 17:19 ..
+-rw-r--r--@  1 brent  Users  10915 Nov 21 19:48 index.html
+-rw-r--r--   1 brent  Users    226 Sep 23 15:56 notes.md
+drwxr-xr-x  12 brent  Users    384 Nov 21 19:52 .git
 ```
 ]
 
@@ -476,7 +476,7 @@ drwxr-xr-x  12 brent.haas  OMADA\Domain Users    384 Nov 21 19:52 .git
 - Some options may be only available as `-` or `--`
 - Using <b><i>-h</i></b> <b><i>--help</i></b> or <b><i>-?</i></b> may give usage info
 ```
-!4476➜  git -h | head -n6
+➜  git -h | head -n6
 usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
@@ -528,7 +528,7 @@ usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
 - RTFM using the <i><b>man</b></i> command
 
 ```
-!4493➜  man ls
+➜  man ls
 LS(1)                        General Commands Manual                       LS(1)
 NAME
      ls – list directory contents
@@ -589,14 +589,14 @@ SYNOPSIS
 - Tells you everything you need to know
 - Read referenced sections
 ```
-!4509➜  man grep
+➜  man grep
 ...
 SEE ALSO
      bzip2(1), compress(1), ed(1), ex(1), gzip(1), sed(1), xz(1), zgrep(1),
      re_format(7)
 ```
 ```
-!4512➜  man 7 re_format
+➜  man 7 re_format
 RE_FORMAT(7)            Miscellaneous Information Manual            RE_FORMAT(7)
 NAME
      re_format – POSIX 1003.2 regular expressions
@@ -605,11 +605,306 @@ NAME
 
 ---
 
-class: middle, center
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - <u>I/O Streams</u>
+]
 
-## Pipes & Redirects
+.right-column.center[
+# I/O Streams
+]
+
+--
+
+.right-column.center[
+Streams are how commands communicate
+]
 
 ---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - <u>I/O Streams</u>
+]
+
+.right-column.center[
+# I/O Streams
+]
+
+.right-column[
+- <b>STDIN</b>
+  - The input to a command
+  - Often the text typed into the terminal
+  - Can be from a file or another command
+      - (see Pipes & Redirects)
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - <u>I/O Streams</u>
+]
+
+.right-column.center[
+# I/O Streams
+]
+.right-column[
+- <b>STDIN</b>
+- <b>STDOUT</b>
+  - The output of a command
+  - Often sent to the user's display
+  - Can be sent to a file or another command
+      - (see Pipes & Redirects)
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - <u>I/O Streams</u>
+]
+
+.right-column.center[
+# I/O Streams
+]
+.right-column[
+- <b>STDIN</b>
+- <b>STDOUT</b>
+- <b>STDERR</b>
+  - A special kind of output
+  - Used to display errors
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - I/O Streams
+  - <u>Redirects</u>
+]
+
+.right-column.center[
+# Redirecting Streams
+]
+
+--
+
+.right-column[
+- Redirect STDOUT to a file by using <b><i>></i></b>
+  - Append with <b><i>>></i></b>
+
+```
+➜  echo "words in file" > /tmp/words
+➜  echo "overwritten" > /tmp/words
+➜  echo "appended" >> /tmp/words
+➜  cat /tmp/words
+overwritten
+appended
+```
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - I/O Streams
+  - <u>Redirects</u>
+]
+
+.right-column.center[
+# Redirecting Streams
+]
+.right-column[
+- Redirect STDOUT to a file by using <b><i>></i></b>
+- Redirect STDERR to STDOUT by using <b><i>2>&1</i></b>
+
+```
+➜  ls missing_dir > /tmp/output
+ls: missing_dir: No such file or directory
+➜  cat /tmp/output
+
+➜
+```
+
+```
+➜  ls missing_dir > /tmp/output 2>&1
+➜  cat /tmp/output
+ls: missing_dir: No such file or directory
+➜
+```
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - I/O Streams
+  - <u>Redirects</u>
+]
+
+.right-column.center[
+# Redirecting Streams
+]
+.right-column[
+- Redirect STDOUT to a file by using <b><i>></i></b>
+- Redirect STDERR to STDOUT by using <b><i>2>&1</i></b>
+- Send it nowhere using <b><i>/dev/null</i></b>
+
+The special system directory <i>/dev/null</i> is like a black hole. Redirect any output you don't care about there.
+(NOTE: This is not the same as "Trash" - it's <b>really</b> gone)
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - I/O Streams
+  - Redirects
+  - <u>Pipes</u>
+]
+
+.right-column.center[
+# Pipes
+]
+
+--
+
+.right-column[
+- Use the <b><i>|</i></b> character
+]
+
+---
+
+.left-column[
+## Commands
+  - Terminology
+  - Types
+  - Arguments
+  - Options
+  - Man Pages
+  - I/O Streams
+  - Redirects
+  - <u>Pipes</u>
+]
+
+.right-column.center[
+# Pipes
+]
+.right-column[
+- Use the <b><i>|</i></b> character
+- Connects the <b>STDOUT</b> of one commoand to the <b>STDIN</b> of the next
+
+```
+➜  ls -alf
+total 40
+drwxr-xr-x   5 brent  Users    160 Oct 21 13:59 .
+drwxr-xr-x  22 brent  Users    704 Nov  9 17:19 ..
+-rw-r--r--@  1 brent  Users  14928 Nov 21 21:18 index.html
+-rw-r--r--   1 brent  Users    226 Sep 23 15:56 notes.md
+drwxr-xr-x  12 brent  Users    384 Nov 21 21:21 .git
+
+➜  ls -alf | grep html
+-rw-r--r--@  1 brent  Users  14928 Nov 21 21:18 index.html
+```
+]
+
+---
+
+.left-column[
+## Useful Commands
+- <u>grep</u>
+]
+
+.right-column.center[
+# Grep
+]
+
+.right-column[
+-
+]
+
+---
+
+class: middle, center
+
+## Pipes
+
+---
+
+.left-column[
+## Pipes
+]
+
+.right-column.center[
+# Pipes
+]
+
+.right-column[
+- Uses the <b><i>|</i></b> character
+]
+
+---
+
+.left-column[
+## Pipes
+]
+
+.right-column.center[
+# Pipes
+]
+
+.right-column[
+- Uses the <b><i>|</i></b> character
+- Pipes connect the output of one command the input of the next
+```sh
+➜ git status | grep 'both modified' | awk '{print $3}'
+docker-compose.yml
+```
+]
+
+---
+
 
 
 3. Pipes & Redirects
