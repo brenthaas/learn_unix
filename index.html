@@ -170,15 +170,36 @@ class: middle, center
 Unix commands are programs that are invoked from within a terminal.
 ]
 
---
+---
+
+.left-column[
+## Commands
+  - <u>Terminoligy</u>
+]
+
+.right-column.center[
+# Terminology
+]
 
 .right-column[
+Unix commands are programs that are invoked from within a terminal.
   - starts a <b>process</b> on the host system
 ]
 
---
+---
+
+.left-column[
+## Commands
+  - <u>Terminoligy</u>
+]
+
+.right-column.center[
+# Terminology
+]
 
 .right-column[
+Unix commands are programs that are invoked from within a terminal.
+  - starts a <b>process</b> on the host system
   - all processes have an identifier (<b>pid</b>)
 ```
 !4441➜  ps aux | head -n3
@@ -188,9 +209,21 @@ _windowserver      392  10.1  0.3 410408320 222064   ??  Ss    8:46PM  87:40.67 
 ```
 ]
 
---
+---
+
+.left-column[
+## Commands
+  - <u>Terminoligy</u>
+]
+
+.right-column.center[
+# Terminology
+]
 
 .right-column[
+Unix commands are programs that are invoked from within a terminal.
+  - starts a <b>process</b> on the host system
+  - all processes have an identifier (<b>pid</b>)
   - processes can be stopped, or killed (depending on permissions)
 ```
 !4446➜  sleep 30 &
@@ -423,7 +456,8 @@ git version 2.37.0 (Apple Git-136)
 - Modify how the command does its work
 - Often have both `-` and `--` options
 - `-` options can be combined
-```
+
+```bash
 ➜  ls -alf
 total 32
 drwxr-xr-x   5 brent  Users    160 Oct 21 13:59 .
@@ -474,8 +508,9 @@ drwxr-xr-x  12 brent  Users    384 Nov 21 19:52 .git
 - Often have both `-` and `--` options
 - `-` options can be combined
 - Some options may be only available as `-` or `--`
-- Using <b><i>-h</i></b> <b><i>--help</i></b> or <b><i>-?</i></b> may give usage info
-```
+- Using `-h` `--help` or `-?` may give usage info
+
+```bash
 ➜  git -h | head -n6
 usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
@@ -529,20 +564,21 @@ usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
 
 ```
 ➜  man ls
-LS(1)                        General Commands Manual                       LS(1)
+GREP(1)          General Commands Manual            GREP(1)
+
 NAME
-     ls – list directory contents
+     grep, egrep, fgrep, rgrep, bzgrep, bzegrep, bzfgrep, zgrep, zegrep, zfgrep – file pattern searcher
+
 SYNOPSIS
-     ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,] [--color=when]
-        [-D format] [file ...]
+     grep [-abcdDEFGHhIiJLlMmnOopqRSsUVvwXxZz] [-A num] [-B num] [-C[num]] [-e pattern] [-f file] [--binary-files=value] [--color[=when]] [--colour[=when]] [--context[=num]] [--label]
+          [--line-buffered] [--null] [pattern] [file ...]
 
-     The following options are available:
+DESCRIPTION
+     The grep utility searches any given input files, selecting lines that match one or more patterns.  By default, a pattern matches an input line if the regular expression (RE) in the pattern
+     matches the input line without its trailing newline.  An empty expression matches every line.  Each input line that matches at least one of the patterns is written to the standard output.
 
-     -@      Display extended attribute keys and sizes in long (-l) output.
-
-     -A      Include directory entries whose names begin with a dot (‘.’) except
-             for . and ...  Automatically set for the super-user unless -I is
-             specified.
+     grep is used for simple patterns and basic regular expressions (BREs); egrep can handle extended regular expressions (EREs).  See re_format(7) for more information on regular expressions.
+     fgrep is quicker than both grep and egrep,
 ```
 
 ]
@@ -566,6 +602,8 @@ SYNOPSIS
 - Almost every command has a man page
 - RTFM using the <i><b>man</b></i> command
 - Tells you everything you need to know
+
+![Image](man_grep.gif)
 ]
 
 ---
@@ -588,7 +626,8 @@ SYNOPSIS
 - RTFM using the <i><b>man</b></i> command
 - Tells you everything you need to know
 - Read referenced sections
-```
+
+```bash
 ➜  man grep
 ...
 SEE ALSO
@@ -716,10 +755,10 @@ Streams are how commands communicate
 --
 
 .right-column[
-- Redirect STDOUT to a file by using <b><i>></i></b>
-  - Append with <b><i>>></i></b>
+- Redirect STDOUT to a file by using `>`
+  - Append with `>>`
 
-```
+```bash
 ➜  echo "words in file" > /tmp/words
 ➜  echo "overwritten" > /tmp/words
 ➜  echo "appended" >> /tmp/words
@@ -746,10 +785,11 @@ appended
 # Redirecting Streams
 ]
 .right-column[
-- Redirect STDOUT to a file by using <b><i>></i></b>
-- Redirect STDERR to STDOUT by using <b><i>2>&1</i></b>
+- Redirect STDOUT to a file by using `>`
+- Redirect STDERR to STDOUT by using `2>&1`
+  - <small> Handy when you want to capture **all** command output</small>
 
-```
+```bash
 ➜  ls missing_dir > /tmp/output
 ls: missing_dir: No such file or directory
 ➜  cat /tmp/output
@@ -757,7 +797,7 @@ ls: missing_dir: No such file or directory
 ➜
 ```
 
-```
+```bash
 ➜  ls missing_dir > /tmp/output 2>&1
 ➜  cat /tmp/output
 ls: missing_dir: No such file or directory
@@ -782,12 +822,11 @@ ls: missing_dir: No such file or directory
 # Redirecting Streams
 ]
 .right-column[
-- Redirect STDOUT to a file by using <b><i>></i></b>
-- Redirect STDERR to STDOUT by using <b><i>2>&1</i></b>
-- Send it nowhere using <b><i>/dev/null</i></b>
-
-The special system directory <i>/dev/null</i> is like a black hole. Redirect any output you don't care about there.
-(NOTE: This is not the same as "Trash" - it's <b>really</b> gone)
+- Redirect STDOUT to a file by using `>`
+- Redirect STDERR to STDOUT by using `2>&1`
+- Send it nowhere using `/dev/null`
+    - A special system directory that's like a black hole<br>
+<small>(NOTE: This is not the same as 🗑"Trash" - it's <b>really</b> gone)</small>
 ]
 
 ---
@@ -811,7 +850,7 @@ The special system directory <i>/dev/null</i> is like a black hole. Redirect any
 --
 
 .right-column[
-- Use the <b><i>|</i></b> character
+- Use the `|` character
 ]
 
 ---
@@ -832,8 +871,8 @@ The special system directory <i>/dev/null</i> is like a black hole. Redirect any
 # Pipes
 ]
 .right-column[
-- Use the <b><i>|</i></b> character
-- Connects the <b>STDOUT</b> of one commoand to the <b>STDIN</b> of the next
+- Use the `|` character
+- Connects the **STDOUT** of one command to the **STDIN** of the next
 
 ```
 ➜  ls -alf
@@ -881,7 +920,7 @@ class: middle, center
 ]
 
 .right-column[
-- Uses the <b><i>|</i></b> character
+- Uses the `|` character
 ]
 
 ---
@@ -895,8 +934,9 @@ class: middle, center
 ]
 
 .right-column[
-- Uses the <b><i>|</i></b> character
+- Uses the `|` character
 - Pipes connect the output of one command the input of the next
+
 ```sh
 ➜ git status | grep 'both modified' | awk '{print $3}'
 docker-compose.yml
